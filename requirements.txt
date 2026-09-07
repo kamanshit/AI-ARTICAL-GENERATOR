@@ -1,0 +1,8 @@
+Django
+python-dotenv
+tavily-python
+langchain-core
+langchain-text-splitters
+langchain-google-genai
+langchain-chroma
+chromadb

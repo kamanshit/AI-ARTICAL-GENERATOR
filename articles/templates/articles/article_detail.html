@@ -1,0 +1,56 @@
+{% extends "articles/base.html" %}
+
+{% block title %}
+{{ article.topic }}
+{% endblock %}
+
+{% block content %}
+
+<div class="article-detail">
+
+    <div class="article-detail-header">
+
+        <a
+            href="{% url 'home' %}"
+            class="back-link"
+        >
+            ← Back to My Articles
+        </a>
+
+        <h1>{{ article.topic }}</h1>
+
+        <small class="article-date">
+            Created: {{ article.created_at }}
+        </small>
+
+    </div>
+
+
+    <div class="article-detail-content">
+
+        {{ article.content|linebreaks }}
+
+    </div>
+
+
+    <div class="article-actions">
+
+        <a
+            href="{% url 'article_update' article.id %}"
+            class="button-link"
+        >
+            Edit Article
+        </a>
+
+        <a
+            href="{% url 'article_delete' article.id %}"
+            class="button-link delete-link"
+        >
+            Delete Article
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

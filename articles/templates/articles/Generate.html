@@ -1,0 +1,201 @@
+{% extends "articles/base.html" %}
+
+{% block title %}
+Generate Article
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Generate an Article</h1>
+
+    <p>
+        Research a topic with AI and create a detailed article.
+    </p>
+</div>
+
+
+<div class="generator-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Generate Article
+        </button>
+
+    </form>
+
+</div>
+
+
+{% if article %}
+
+    <section class="article-section">
+
+        <div class="section-heading">
+            <h2>Generated Article</h2>
+            <p>Your research-based AI article.</p>
+        </div>
+
+        <div class="article-content">
+            {{ article|linebreaks }}
+        </div>
+
+    </section>
+
+
+    {% if sources %}
+
+        <section class="sources">
+
+            <div class="section-heading">
+                <h2>Sources</h2>
+                <p>Research used to generate this article.</p>
+            </div>
+
+            <ul>
+
+                {% for source in sources %}
+
+                    <li>
+                        <a
+                            href="{{ source.url }}"
+                            target="_blank"
+                        >
+                            {{ source.title }}
+                        </a>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </section>
+
+    {% endif %}
+
+
+    <section class="chat-section">
+
+        <div class="section-heading">
+            <h2>Ask AI About This Article</h2>
+
+            <p>
+                Ask questions about the research and article.
+            </p>
+        </div>
+
+
+        <form
+            method="POST"
+            action="{% url 'article_chat' %}"
+            class="chat-form"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="topic"
+                value="{{ topic }}"
+            >
+
+            <textarea
+                name="article"
+                style="display:none;"
+            >{{ article }}</textarea>
+
+            <textarea
+                name="question"
+                rows="4"
+                placeholder="Ask something about this article..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Ask AI
+            </button>
+
+        </form>
+
+
+        {% if chat_history %}
+
+            <div class="chat-container">
+
+                {% for message in chat_history %}
+
+                    {% if message.role == "human" %}
+
+                        <div class="chat-message chat-user">
+
+                            <div class="chat-label">
+                                You
+                            </div>
+
+                            <div>
+                                {{ message.content }}
+                            </div>
+
+                        </div>
+
+                    {% elif message.role == "ai" %}
+
+                        <div class="chat-message chat-ai">
+
+                            <div class="chat-label">
+                                AI
+                            </div>
+
+                            <div>
+                                {{ message.content }}
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <section class="save-section">
+
+        <div class="section-heading">
+            <h2>Save Article</h2>
+
+            <p>
+                Happy with your article? Save it to your collection.
+            </p>
+        </div>
+
+
+        <form method="POST" action="{% url 'save_article' %}">
+
+            {% csrf_token %}
+
+            <textarea
+                name="article"
+                style="display:none;"
+            >{{ article }}</textarea>
+
+            <button type="submit">
+                Save Article
+            </button>
+
+        </form>
+
+    </section>
+
+{% endif %}
+
+{% endblock %}

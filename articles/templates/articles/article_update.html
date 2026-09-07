@@ -1,0 +1,29 @@
+{% extends "articles/base.html" %}
+
+{% block title %}
+Edit Article
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit Article</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save Changes
+    </button>
+
+</form>
+
+<br>
+
+<a href="{% url 'article_detail' article.id %}">
+    ← Cancel
+</a>
+
+{% endblock %}

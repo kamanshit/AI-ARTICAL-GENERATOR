@@ -1,0 +1,47 @@
+{% extends "articles/base.html" %}
+
+{% block title %}
+AI Article Generator
+{% endblock %}
+
+{% block content %}
+
+<h1>AI Article Generator</h1>
+
+<p>Generate articles using Generative AI.</p>
+
+<a href="{% url 'generateArticle' %}">
+    Generate an Article
+</a>
+
+<hr>
+
+<h2>All Articles</h2>
+
+{% for article in articles %}
+
+    <div class="article-card">
+
+        <h3>
+            <a href="{% url 'article_detail' article.id %}">
+                {{ article.topic }}
+            </a>
+        </h3>
+
+        <small class="article-date">
+            Created: {{ article.created_at }}
+        </small>
+
+        <p class="article-preview">
+            {{ article.content|truncatewords:30 }}
+        </p>
+
+    </div>
+
+{% empty %}
+
+    <p>No articles have been generated yet.</p>
+
+{% endfor %}
+
+{% endblock %}

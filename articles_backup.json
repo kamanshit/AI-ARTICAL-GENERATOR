@@ -1,0 +1,56 @@
+[
+{
+  "model": "articles.articles",
+  "pk": 3,
+  "fields": {
+    "topic": "Artificial Intelligence",
+    "content": "Artificial Intelligence (AI) has rapidly transformed from science fiction into a cornerstone of modern technology. By mimicking human intelligence, AI systems process vast amounts of data, recognize patterns, and make decisions with unprecedented speed. \n\nToday, AI powers everyday tools like voice assistants, personalized streaming recommendations, and fraud detection. In industries like healthcare, it accelerates disease diagnosis and drug discovery, while in transportation, it drives autonomous vehicles toward reality. \n\nAs machine learning and neural networks advance, AI promises boundless innovation. However, this growth demands responsible oversight regarding ethics, privacy, and job displacement. Ultimately, AI is not replacing human potential, but amplifying it.",
+    "created_at": "2026-09-04T13:37:28.511Z"
+  }
+},
+{
+  "model": "articles.articles",
+  "pk": 5,
+  "fields": {
+    "topic": "Machine Learning",
+    "content": "Machine Learning (ML), a transformative subset of artificial intelligence, empowers computers to learn from data without explicit programming. By analyzing vast patterns, ML algorithms continuously improve their performance over time. \n\nIts applications are ubiquitous. In healthcare, ML predicts diseases and accelerates drug discovery. E-commerce platforms rely on it for personalized product recommendations, while finance utilizes ML for fraud detection and algorithmic trading. Furthermore, self-driving cars and natural language assistants like Siri depend on its predictive power.\n\nAs computational power grows and data generation explodes, Machine Learning continues to redefine human capabilities, revolutionizing industries and shaping our digital future.",
+    "created_at": "2026-09-06T12:58:53.156Z"
+  }
+},
+{
+  "model": "articles.articles",
+  "pk": 6,
+  "fields": {
+    "topic": "Deep learning",
+    "content": "Deep learning, a specialized subset of artificial intelligence, mimics the human brain using multi-layered artificial neural networks. Unlike traditional programming, it automatically learns complex patterns and representations from vast amounts of data without explicit human intervention. \n\nPowering today’s most advanced technologies, deep learning drives natural language processing, computer vision, autonomous vehicles, and medical diagnostics. Its remarkable ability to process unstructured data—like images, audio, and text—has revolutionized industries. As computing power grows and algorithms evolve, deep learning continues to push the boundaries of machine intelligence, transforming how we live, work, and solve humanity's most intricate challenges.",
+    "created_at": "2026-09-06T12:59:57.754Z"
+  }
+},
+{
+  "model": "articles.articles",
+  "pk": 7,
+  "fields": {
+    "topic": "Python",
+    "content": "Python is a versatile, high-level programming language known for its clear syntax and readability, making it ideal for beginners and experts alike. Created by Guido van Rossum and released in 1991, Python emphasizes code readability with the use of significant indentation. \n\nIt is a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles. Python boasts a vast standard library and a thriving ecosystem of third-party packages, powering advancements in web development, data science, artificial intelligence, and automation. Its simplicity and power allow developers to build robust applications quickly, cementing its status as one of the world's most popular programming languages.",
+    "created_at": "2026-09-06T13:00:11.579Z"
+  }
+},
+{
+  "model": "articles.articles",
+  "pk": 8,
+  "fields": {
+    "topic": "DataBase",
+    "content": "A database is an organized collection of structured data, typically stored electronically in a computer system. It serves as the backbone for modern applications, allowing users to efficiently store, retrieve, update, and manage vast amounts of information. \n\nDatabases are broadly categorized into relational (SQL) databases, which use structured tables with predefined schemas, and non-relational (NoSQL) databases, which handle unstructured or dynamic data. Managed by Database Management Systems (DBMS), they ensure data security, integrity, and concurrent access for multiple users. From e-commerce transactions to social media feeds, databases are essential for powering the digital world.",
+    "created_at": "2026-09-06T13:00:18.339Z"
+  }
+},
+{
+  "model": "articles.articles",
+  "pk": 9,
+  "fields": {
+    "topic": "Zoology",
+    "content": "Zoology, the branch of biology dedicated to the study of animal life, explores the vast diversity of creatures inhabiting our planet. From microscopic tardigrades to majestic blue whales, zoologists examine how animals behave, evolve, interact with ecosystems, and physiological structures function. \n\nThis vital scientific discipline encompasses numerous specialties, including animal behavior (ethology), classification (taxonomy), genetics, and ecology. By understanding wildlife biology, researchers can better address critical global challenges, such as biodiversity loss, habitat destruction, and wildlife conservation. Ultimately, zoology deepens our appreciation of the natural world, illuminating the complex evolutionary threads that connect all living organisms.",
+    "created_at": "2026-09-07T05:40:36.879Z"
+  }
+}
+]
