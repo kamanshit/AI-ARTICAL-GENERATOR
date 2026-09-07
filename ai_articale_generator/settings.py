@@ -27,8 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "ai-artical-generator-1.onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
-
 
 # Application definition
 
