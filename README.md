@@ -1,425 +1,236 @@
 # 🤖 AI Article Generator
 
-A Django-based AI Article Generator that uses **Google Gemini, Tavily, LangChain, and ChromaDB** to research topics, generate articles, and chat with generated articles.
+A simple **Django-based AI Article Generator** that uses Generative AI,
+web research, RAG, and a chatbot to create informative articles.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- 👤 User Registration & Login
-- 📝 Generate AI Articles
-- 🌐 Web Research using Tavily
-- 🧠 RAG using ChromaDB
-- 💬 Chat with Generated Articles
-- 🧠 Conversation Memory
-- 🔗 Research Sources
-- 💾 Save Articles
-- 📖 View Articles
-- ✏️ Edit Articles
-- 🗑️ Delete Articles
-- 🎨 Responsive UI
+- 📝 Generate articles from any topic
+- 🌐 Research topics using Tavily
+- 🤖 Generate articles using Google Gemini
+- 🔎 Retrieval-Augmented Generation (RAG)
+- 💬 Chat with generated articles
+- 🧠 Conversation memory
+- 🔗 View research sources
+- 💾 Save articles
+- ✏️ Edit saved articles
+- 🗑️ Delete saved articles
+- 👤 User authentication
+- 📚 Personal article collection
 
 ---
 
-# 🌐 Django Backend
+## 🏗️ Built With
 
-The application is built using **Django**.
+| Technology | Purpose |
+|---|---|
+| 🐍 Django | Web application & backend |
+| 🤖 Google Gemini | Article generation & chatbot |
+| 🔎 Tavily | Web research |
+| 🦜 LangChain | AI/RAG pipeline |
+| 🧠 Gemini Embeddings | Text embeddings |
+| 🗄️ ChromaDB | Vector database |
+| 🗃️ SQLite | Application database |
+| 🎨 HTML & CSS | Frontend |
+
+---
+
+## 🐍 Django Backend
+
+The application is built with Django.
 
 Django handles:
 
-- User authentication
-- URL routing
-- Views
-- Forms
-- Database models
-- Article CRUD operations
-- Sessions
-- Templates
-- Static files
+- 👤 User registration & login
+- 📝 Article management
+- 💾 Saving articles
+- ✏️ Updating articles
+- 🗑️ Deleting articles
+- 🔐 User-specific articles
+- 🌐 URL routing
+- 🎨 HTML templates
 
-The project contains two main Django apps:
+---
+
+## 🤖 Generative AI
+
+The application uses **Google Gemini** to generate articles
+and answer questions about them.
+
+The user provides a topic:
 
 ```text
-accounts/
-articles/
+Artificial Intelligence in Healthcare
 ```
-👤 Accounts
+The application researches the topic and generates
+a structured article using the collected information.
 
-The accounts app handles:
-
-Registration
-Login
-Logout
-Custom User Model
-📝 Articles
-
-The articles app handles:
-
-Article generation
-AI chatbot
-Article storage
-Article detail
-Edit
-Delete
-Web research
-🗃️ Database
-
-The application uses SQLite as the database.
-
-Each article is connected to the user who created it using a Django ForeignKey.
-
-User
- ├── Article
- ├── Article
- └── Article
-
- 🤖 Generative AI
-
-The AI functionality is implemented in:
-
-articles/services.py
-
-The project uses:
-
-Google Gemini
-LangChain
-Tavily
-Gemini Embeddings
-ChromaDB
 🌐 Web Research
 
-When a user enters a topic, the application first searches the web using Tavily.
+Tavily is used to search the web for relevant information.
 
 User Topic
     ↓
-Tavily
+Tavily Web Search
     ↓
-Search Results
-    ↓
-Documents
+Research Documents
 
-The search results are converted into LangChain Document objects.
+This gives the AI external research to work with.
 
-✂️ Text Splitting
-
-The research documents are split into smaller chunks using:
-
-RecursiveCharacterTextSplitter
-
-The project uses:
-
-chunk_size=500
-chunk_overlap=100
-
-This makes the research easier to search and retrieve.
-
-🧠 Embeddings
-
-The project uses Gemini embeddings to convert text into vectors.
-
-Text
- ↓
-Gemini Embeddings
- ↓
-Vector
-
-This allows the application to perform semantic similarity searches.
-
-🗄️ ChromaDB
-
-The generated embeddings are stored in ChromaDB.
-
-Documents
-   ↓
-Embeddings
-   ↓
-ChromaDB
-
-ChromaDB is used as the vector database for the RAG pipeline.
-
-🔍 RAG
+🔎 RAG Pipeline
 
 The project uses Retrieval-Augmented Generation (RAG).
 
-The basic flow is:
-
-Web Research
-     ↓
-Documents
-     ↓
-Text Splitting
-     ↓
+Research
+   ↓
+Document Splitting
+   ↓
 Embeddings
-     ↓
+   ↓
 ChromaDB
-     ↓
-Retriever
-     ↓
+   ↓
+Similarity Search
+   ↓
 Relevant Context
-     ↓
+   ↓
 Google Gemini
-     ↓
+   ↓
 Generated Article
 
-Instead of sending only the user's topic to Gemini, relevant research is retrieved first and provided as context.
+This helps Gemini generate answers using relevant research
+instead of relying only on its internal knowledge.
 
-💬 AI Chatbot
+💬 AI Article Chat
 
 After generating an article, users can ask questions about it.
 
-For example:
+Example:
 
-User:
-What are the benefits of AI in education?
+User: What are the main benefits mentioned in the article?
 
-AI:
-AI can provide personalized learning...
+AI: The main benefits include...
 
-User:
-What about teachers?
+The chatbot uses:
 
-AI:
-AI can also help teachers by...
+🔎 Article retrieval
+🧠 Conversation history
+🤖 Google Gemini
+👤 Authentication
 
-The chatbot uses the article as its knowledge source and retrieves relevant sections before generating an answer.
+Users can create an account and login.
 
-🧠 Conversation Memory
+Each user has their own saved articles.
 
-The chatbot maintains conversation history using LangChain messages:
-
-HumanMessage
-AIMessage
-
-Django sessions are used to maintain the conversation between requests.
-
-This allows the AI to understand follow-up questions.
-
-🔗 Sources
-
-The application displays the sources returned by Tavily.
-
-Each source contains:
-
-Source title
-Source URL
-
-Users can click the sources to view the original research.
-
-💾 Save Articles
-
-Articles are not saved immediately after generation.
-
-The workflow is:
-
+User
+ ↓
+Login
+ ↓
 Generate Article
-      ↓
-Chat with Article
-      ↓
-Review
-      ↓
+ ↓
 Save Article
+ ↓
+My Articles
+📚 Article Management
 
-Saved articles are stored in the Django database and associated with the logged-in user.
+Saved articles can be:
 
-✏️ Article Management
+👀 Viewed
+✏️ Edited
+🗑️ Deleted
 
-Users can manage their saved articles.
+The project uses a Django ForeignKey to connect
+articles with users.
 
-Create
-  ↓
-Read
-  ↓
-Update
-  ↓
-Delete
-
-Users can:
-
-View saved articles
-Open article details
-Edit articles
-Delete articles
-🎨 Frontend
-
-The frontend uses:
-
-HTML
-Django Templates
-CSS
-
-The project uses a single stylesheet:
-
-articles/static/articles/style.css
-
-The UI includes:
-
-Navigation bar
-Article cards
-Article reader
-AI chat interface
-Forms
-Authentication pages
-Source links
-Responsive layout
-🏗️ Project Structure
+📁 Project Structure
 ai_article_generator/
-│
-├── manage.py
-├── requirements.txt
-├── .gitignore
 │
 ├── accounts/
 │   ├── models.py
 │   ├── views.py
-│   ├── urls.py
-│   └── templates/
+│   ├── forms.py
+│   └── urls.py
 │
 ├── articles/
 │   ├── models.py
 │   ├── views.py
-│   ├── urls.py
 │   ├── forms.py
 │   ├── services.py
-│   │
-│   ├── templates/
-│   │   └── articles/
-│   │
-│   └── static/
-│       └── articles/
-│           └── style.css
+│   ├── urls.py
+│   └── templates/
 │
-└── ai_articale_generator/
-    ├── settings.py
-    ├── urls.py
-    ├── asgi.py
-    └── wsgi.py
-🛠️ Tech Stack
-Backend
-🐍 Python
-🌐 Django
-🗃️ SQLite
-Generative AI
-🤖 Google Gemini
-🧩 LangChain
-🧠 Gemini Embeddings
-🔍 RAG
-Research & Vector Database
-🌐 Tavily
-🗄️ ChromaDB
-Frontend
-HTML
-CSS
-Django Templates
+├── ai_articale_generator/
+│   └── settings.py
+│
+├── manage.py
+├── requirements.txt
+├── .gitignore
+└── README.md
 ⚙️ Installation
-1. Clone the repository
-git clone YOUR_REPOSITORY_URL
+
+Clone the repository:
+
+git clone YOUR_GITHUB_REPOSITORY_URL
 cd ai_article_generator
-2. Create virtual environment
+
+Create a virtual environment:
+
 python -m venv venv
-3. Activate virtual environment
-
-macOS / Linux:
-
 source venv/bin/activate
 
-Windows:
+Install dependencies:
 
-venv\Scripts\activate
-4. Install dependencies
 pip install -r requirements.txt
-5. Create .env
 
-Create a .env file in the project root:
+Create a .env file:
 
 GOOGLE_API_KEY=your_google_api_key
 TAVILY_API_KEY=your_tavily_api_key
-6. Run migrations
+
+Run migrations:
+
 python manage.py migrate
-7. Start the server
+
+Start the server:
+
 python manage.py runserver
 
 Open:
 
 http://127.0.0.1:8000/
-🔄 Application Flow
-
-The complete application works like this:
-
+🚀 Project Flow
 👤 User
-   ↓
-🌐 Django
-   ↓
+  ↓
 📝 Enter Topic
-   ↓
+  ↓
 🌐 Tavily Research
-   ↓
-✂️ Text Splitting
-   ↓
-🧠 Gemini Embeddings
-   ↓
-🗄️ ChromaDB
-   ↓
-🔍 Retriever
-   ↓
-🤖 Google Gemini
-   ↓
+  ↓
+🔎 RAG Pipeline
+  ↓
+🤖 Gemini
+  ↓
 📄 Generated Article
-   ↓
-💬 AI Chat
-   ↓
-🧠 Conversation Memory
-   ↓
+  ↓
+💬 Ask AI
+  ↓
 💾 Save Article
-   ↓
-📚 User's Articles
-📚 What I Learned
-
-This project helped me understand how to combine Django with Generative AI.
-
-Django
-Project & app structure
-URLs
-Views
-Templates
-Forms
-Models
-ForeignKey
-Authentication
-Sessions
-CRUD
-Static files
-Generative AI
-LLMs
-Prompt Engineering
-LangChain
-Web Research
-Document Processing
-Text Chunking
-Embeddings
-Vector Databases
-Semantic Search
-Retrievers
-RAG
-Conversation Memory
-AI Chatbots
-🚀 Future Improvements
-
-Possible future improvements:
-
-⚡ Streaming AI responses
-✏️ AI-assisted article editing
-📝 Better Markdown rendering
-🧪 Automated tests
-🌐 Production deployment
-📊 Article analytics
-👨‍💻 Author
-
-Kamanshit 
-
-Built with:
-
-🐍 Python
-🌐 Django
+🎯 What I Learned
+🐍 Django fundamentals
+👤 Custom User Model
+🔗 Django ForeignKey
+🗃️ CRUD operations
+🌐 API integration
 🤖 Generative AI
-🧠 RAG
-💬 AI Chat
+🦜 LangChain
+🔎 RAG
+🧠 Embeddings
+🗄️ Vector databases
+💬 AI conversation memory
+🔐 Django sessions
+🔮 Future Improvements
+🎨 Better UI/UX
+📄 Export articles as PDF
+📊 Article analytics
+☁️ Deployment
+⚡ Streaming AI responses
