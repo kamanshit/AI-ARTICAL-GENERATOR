@@ -143,30 +143,7 @@ Saved articles can be:
 The project uses a Django ForeignKey to connect
 articles with users.
 
-📁 Project Structure
-ai_article_generator/
-│
-├── accounts/
-│   ├── models.py
-│   ├── views.py
-│   ├── forms.py
-│   └── urls.py
-│
-├── articles/
-│   ├── models.py
-│   ├── views.py
-│   ├── forms.py
-│   ├── services.py
-│   ├── urls.py
-│   └── templates/
-│
-├── ai_articale_generator/
-│   └── settings.py
-│
-├── manage.py
-├── requirements.txt
-├── .gitignore
-└── README.md
+
 ⚙️ Installation
 
 Clone the repository:
