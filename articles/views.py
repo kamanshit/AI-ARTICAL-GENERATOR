@@ -5,6 +5,10 @@ from .forms import ArticleForm
 from django.contrib.auth.decorators import login_required
 from .services import generate_articles, chat_with_article
 from langchain_core.messages import HumanMessage, AIMessage
+from django.http import HttpResponse
+
+def health(request):
+    return HttpResponse("OK")
 
 @login_required
 def home(request):
